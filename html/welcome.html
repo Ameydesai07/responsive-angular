@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Welcome</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<style type="text/css">
+ol li {
+display: inline;
+margin: 0 10px;
+padding: 0 10px;
+}
+	</style>
+</head>
+<body ng-app="myapp">
+<div ng-controller="HelloController">
+	<h2>{{myobj.title}}</h2>	
+
+	<span style="background-color:gray;" ng-bind="myobj.name()"></span>
+
+	<ol>
+   <li style="margin-left:10%;     display: table-cell;"ng-repeat="theItem in myobj.items">
+   <div ng-click="doClick(theItem.text)">{{theItem.text}}</div></li>
+</ol>
+
+	<div style="height:auto;width:50%;border:solid 2px black;margin:auto;">
+	<!-- <span ng-show="myobj.showIt" style="background-color:green;" ng-bind="myobj.name()"></span>
+	<span ng-hide="myobj.showIt" style="background-color:yellow;" ng-bind="myobj.name()"></span>
+ -->
+	</div>
+	<div ng-switch on="myobj.switch">
+		<div ng-switch-when="1">With in case 1</div>
+		<div ng-switch-default>With in case dafault</div>	
+	</div> 
+	<div ng-if="myobj.showIt">In if</div>
+</div>
+<input type="text" name="nm" ng-model="nm"/>
+
+<span ng-show="myobj.showItt" style="background-color:green;" ng-bind="myobj.name()"></span>
+	
+
+
+<script type="text/javascript">		
+	angular.module("myapp",[]).controller("HelloController",function ($scope) {
+		// body...	
+		
+	//	console.log($scope);
+		$scope.nm = '';
+		$scope.myobj = {};
+		$scope.myarr = [];
+		$scope.myobj.showItt = false;
+		// $scope.myarr.push($scope.nm);
+	
+			
+		$scope.myobj.title ="Welcome to angular";
+		$scope.myobj.showIt = true;
+		$scope.myobj.switch = 2;
+		 $scope.myobj.items = [ {text : "one"}, {text : "two"}, {text : "three"} ];
+		$scope.myobj.name = function(){
+			return "amey Desai";
+		}
+		$scope.doClick = function(data){
+			if(data=='one')
+			{
+			alert(data);
+			
+			$scope.myobj.showItt = true;
+			}
+		}
+
+		// $(window).on("resize",function(){
+		// 		console.log($scope.nm);
+	
+		// });
+	});
+</script>
+ <span ng-bind="nm"></span> 
+</body>
+</html>
